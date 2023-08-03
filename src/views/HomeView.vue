@@ -20,7 +20,19 @@
 
 <script setup>
 // import { ref, reactive } from 'vue'
-import { reactive, computed, watch } from 'vue'
+import {
+  reactive,
+  computed,
+  watch,
+  onBeforeMount,
+  onMounted,
+  onBeforeUnmount,
+  onUnmounted,
+  onActivated,
+  onDeactivated,
+  onUpdated,
+  onBeforeUpdate
+} from 'vue'
 
 /*const counter = ref(0),
       counterTitle = ref('My Counter')*/
@@ -49,6 +61,32 @@ const oddOrEven = computed(() => {
 const changeCounter = amount => {
   counterData.count = counterData.count + amount
 }
+
+onBeforeMount(() => {
+  console.log('onBeforeMount')
+})
+//we can use several onMounted for example hooks
+onMounted(() => {
+  console.log('onMounted')
+})
+onBeforeUnmount(() => {
+  console.log('onBeforeUnmount')
+})
+onUnmounted(() => {
+  console.log('onUnmounted')
+})
+onActivated(() => {
+  console.log('onActivated')
+})
+onDeactivated(() => {
+  console.log('onDeactivated')
+})
+onBeforeUpdate(() => {
+  console.log('onBeforeUpdate')
+})
+onUpdated(() => {
+  console.log('onUpdated')
+})
 </script>
 
 <style>
