@@ -12,7 +12,7 @@
 
     <div class="edit">
       <h4>Edit counter title:</h4>
-      <input v-model="counterData.title" type="text">
+      <input v-model="counterData.title" type="text" v-autofocus>
     </div>
 
   </div>
@@ -33,6 +33,7 @@ import {
   onUpdated,
   onBeforeUpdate
 } from 'vue'
+import vAutofocus from '@/directives/vAutofocus'
 
 /*const counter = ref(0),
       counterTitle = ref('My Counter')*/
@@ -87,6 +88,7 @@ onBeforeUpdate(() => {
 onUpdated(() => {
   console.log('onUpdated')
 })
+
 </script>
 
 <style>
