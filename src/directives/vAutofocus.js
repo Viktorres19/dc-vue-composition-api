@@ -3,4 +3,4 @@ const vAutofocus = {
 		el.focus()
 	}
 }
-export default vAutofocus;
+export default vAutofocus
