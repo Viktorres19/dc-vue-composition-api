@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2>{{ appTitle }}</h2>
+    <h2 ref="appTitleRef">{{ appTitle }}</h2>
     <h3>{{ counterData.title }}:</h3>
     <div>
       <button @click="changeCounter(-1)" class="btn">-</button>
@@ -21,6 +21,7 @@
 <script setup>
 // import { ref, reactive } from 'vue'
 import {
+  ref,
   reactive,
   computed,
   watch,
@@ -31,7 +32,8 @@ import {
   onActivated,
   onDeactivated,
   onUpdated,
-  onBeforeUpdate
+  onBeforeUpdate,
+  nextTick
 } from 'vue'
 import vAutofocus from '@/directives/vAutofocus'
 
@@ -40,6 +42,9 @@ import vAutofocus from '@/directives/vAutofocus'
 
 // Non-reactive data
 const appTitle = "My Amazing Counter App"
+
+// access to refs
+const appTitleRef = ref(null)
 
 // setup reactive object
 const counterData = reactive({
@@ -59,8 +64,12 @@ const oddOrEven = computed(() => {
 })
 
 //when you use reactive you don't need count.value
-const changeCounter = amount => {
+const changeCounter = async amount => {
   counterData.count = counterData.count + amount
+  //after import we can use next tick
+  await nextTick(() => {
+    console.log('do something when counter is updated in the dom')
+  })
 }
 
 onBeforeMount(() => {
@@ -68,7 +77,8 @@ onBeforeMount(() => {
 })
 //we can use several onMounted for example hooks
 onMounted(() => {
-  console.log('onMounted')
+  //then call this ref
+  console.log(`The app title is ${appTitleRef.value.offsetWidth} px wide!`)
 })
 onBeforeUnmount(() => {
   console.log('onBeforeUnmount')
