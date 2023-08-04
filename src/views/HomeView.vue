@@ -32,7 +32,8 @@ import {
   onActivated,
   onDeactivated,
   onUpdated,
-  onBeforeUpdate
+  onBeforeUpdate,
+  nextTick
 } from 'vue'
 import vAutofocus from '@/directives/vAutofocus'
 
@@ -63,8 +64,12 @@ const oddOrEven = computed(() => {
 })
 
 //when you use reactive you don't need count.value
-const changeCounter = amount => {
+const changeCounter = async amount => {
   counterData.count = counterData.count + amount
+  //after import we can use next tick
+  await nextTick(() => {
+    console.log('do something when counter is updated in the dom')
+  })
 }
 
 onBeforeMount(() => {
