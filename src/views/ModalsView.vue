@@ -4,7 +4,6 @@
 			<button @click="showModal = true">Show modal</button>
 	  <Modal
 		  v-model="showModal"
-		  @hideModal="showModal = false"
 		  interestingTitle="This is the real new title"
 	  >
 <!--			<Modal

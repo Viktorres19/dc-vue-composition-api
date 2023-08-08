@@ -8,7 +8,7 @@
 			<slot />
 			<pre>{{newTitle}}</pre>
 			<div>{{props.interestingTitle}}</div>
-			<button @click="handleButtonClick">Hide modal</button>
+			<button @click="$emit('update:modelValue', false)">Hide modal</button>
 		</div>
 	</teleport>
 </template>
@@ -32,11 +32,14 @@ const props = defineProps({
 	}
 })
 
-const emit = defineEmits(['hideModal'])
+const emit = defineEmits([
+	'update:modelValue',
+	/*'hideModal'*/
+])
 
-const handleButtonClick = () => {
-	emit('hideModal')
-}
+/*const handleButtonClick = () => {
+	emit('update:modelValue', false)
+}*/
 </script>
 
 <style>
