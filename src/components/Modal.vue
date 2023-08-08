@@ -3,12 +3,30 @@
 		<div
 			class="modal"
 		>
-			<h2>This is a modal</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias amet animi consectetur culpa eius enim eveniet fugit impedit incidunt ipsum, itaque, iusto laudantium pariatur quas quidem quo tempore veniam vero voluptates? Accusantium aspernatur consequatur dignissimos dolor eaque, fuga illo illum laborum maiores nisi officia pariatur sed temporibus veritatis voluptatum?</p>
+			<h2><slot name="title" /></h2>
+			<slot />
+			<pre>{{newTitle}}</pre>
+			<div>{{props.interestingTitle}}</div>
 			<button>Hide modal</button>
 		</div>
 	</teleport>
 </template>
+
+<script setup>
+import { useSlots } from 'vue'
+
+const slots = useSlots()
+
+const newTitle = slots.title()[0].children
+
+/*const props = defineProps(['interestingTitle'])*/
+const props = defineProps({
+	interestingTitle: {
+		type: String,
+		default: 'No title specified'
+	}
+})
+</script>
 
 <style>
 .modal {
