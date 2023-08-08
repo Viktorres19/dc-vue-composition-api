@@ -1,6 +1,7 @@
 <template>
 	<teleport to="body">
 		<div
+			v-if="modelValue"
 			class="modal"
 		>
 			<h2><slot name="title" /></h2>
@@ -21,6 +22,10 @@ const newTitle = slots.title()[0].children
 
 /*const props = defineProps(['interestingTitle'])*/
 const props = defineProps({
+	modelValue: {
+		type: Boolean,
+		default: false
+	},
 	interestingTitle: {
 		type: String,
 		default: 'No title specified'
