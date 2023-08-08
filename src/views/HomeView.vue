@@ -21,20 +21,17 @@
 <script setup>
 // import { ref, reactive } from 'vue'
 import {
-  ref,
-  reactive,
-  computed,
-  watch,
-  onBeforeMount,
-  onMounted,
-  onBeforeUnmount,
-  onUnmounted,
   onActivated,
-  onDeactivated,
-  onUpdated,
+  onBeforeMount,
+  onBeforeUnmount,
   onBeforeUpdate,
-  nextTick
+  onDeactivated,
+  onMounted,
+  onUnmounted,
+  onUpdated,
+  ref
 } from 'vue'
+import { useCounter } from '@/use/useCounter'
 import vAutofocus from '@/directives/vAutofocus'
 
 /*const counter = ref(0),
@@ -45,32 +42,6 @@ const appTitle = "My Amazing Counter App"
 
 // access to refs
 const appTitleRef = ref(null)
-
-// setup reactive object
-const counterData = reactive({
-  count: 0,
-  title: 'My Counter'
-})
-
-watch(() => counterData.count, (newCount) => {
-  if (newCount === 20) {
-    alert('Way to go! You made it to 20!')
-  }
-})
-
-const oddOrEven = computed(() => {
-  if (counterData.count % 2 === 0) return 'even'
-  return 'odd'
-})
-
-//when you use reactive you don't need count.value
-const changeCounter = async amount => {
-  counterData.count = counterData.count + amount
-  //after import we can use next tick
-  await nextTick(() => {
-    console.log('do something when counter is updated in the dom')
-  })
-}
 
 onBeforeMount(() => {
   console.log('onBeforeMount')
@@ -99,6 +70,7 @@ onUpdated(() => {
   console.log('onUpdated')
 })
 
+const { counterData, oddOrEven, changeCounter } = useCounter()
 </script>
 
 <style>
