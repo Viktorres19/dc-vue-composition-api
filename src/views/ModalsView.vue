@@ -4,6 +4,7 @@
 			<button @click="showModal = true">Show modal</button>
 			<Modal
 					v-if="showModal"
+					@hideModal="showModal = false"
 					interestingTitle="This is the real new title"
 			>
 <!--				text of the paragraph was passed via slot / instead of v-slot we can use # symbol-->
