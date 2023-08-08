@@ -27,3 +27,9 @@ yarn dev
 ```sh
 yarn build
 ```
+
+### To install VueUse I used command
+
+```sh
+npm i @vueuse/core
+```
